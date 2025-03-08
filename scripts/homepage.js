@@ -1,24 +1,3 @@
-const products = [{
-  image: 'images/products/gel-ink-pens.jpg',
-  name: '8 pcs. High Quality Gel Ink Pens',
-  price: 79,
-  rating: 4.8
-}, {
-  image: 'images/products/navy-shirt.jpg',
-  name: 'Navy Cotton Crew Neck Shirt',
-  price: 149,
-  rating: 4.9
-}, {
-  image: 'images/products/new-balance-shoes.jpg',
-  name: 'New Balance Men’s Shoes',
-  price: 3499,
-  rating: 5
-}, {
-  image: 'images/products/tactical-shorts.jpg',
-  name: 'High Quality Men’s Tactical Shorts',
-  price: 399,
-  rating: 4.7
-}];
 
 let productsHTML = '';
 
