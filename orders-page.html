@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Orders</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles/general.css">
+  <link rel="stylesheet" href="styles/orders-page.css">
+  
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="left-section">
+        <a href="homepage.html" class="header-link">
+          <img src="images/icons/shopsmart-logo.jpeg" width="64px">
+          <p>ShopSmart</p>
+        </a>
+      </div>
+
+      <div class="middle-section">
+        <input type="text" placeholder="Search products" class="search-bar">
+   
+        <button class="search-button">
+          <img src="images/icons/search-icon.png" width="24px">
+        </button>
+
+      </div>
+
+      <div class="right-section">
+        <a href="checkout-page.html" class="header-link">
+          <button class="cart-button">
+            <img src="images/icons/cart-icon.png" width="48px">
+            <p>Cart</p>
+          </button>
+        </a>
+
+        <a href="orders-page.html" class="header-link">
+          <button class="view-orders-button header-link">View Orders</button>
+        </a>
+
+      </div>
+    </nav>
+ </header>
+
+ <main>
+    <div class="page-title">Your Orders</div>
+
+    <div class="orders-grid">
+
+      <div class="order-container">
+
+        <div class="order-header">
+
+          <div class="order-header-left-section">
+
+            <div class="order-date">
+              <div class="order-header-label">Order Placed:</div>
+              <div>March 1</div>
+            </div>
+
+            <div class="order-total">
+              <div class="order-header-label">Total:</div>
+              <div>₱3,548.00</div>
+            </div>
+
+          </div>
+
+          <div class="order-header-right-section">
+            <div class="order-header-label">Order ID:</div>
+            <div>27cba69d-4c3d-4098-b42d-ac7fa62b7664</div>
+          </div>
+
+        </div>
+
+        <div class="order-details-grid">
+
+          <div class="product-image-container">
+            <img src="images/products/new-balance-shoes.jpg" class="product-image">
+          </div>
+
+          <div class="product-details">
+
+            <div class="product-name">New Balance Men’s Shoes</div>
+
+            <div class="product-delivert-date">Arriving on: March 5</div>
+
+            <div class="product-quantity">Quantity: 1</div>
+
+            <button class="buy-again-button">
+
+              <img class="buy-again-icon" src="images/icons/buy-again.png">
+              <span class="buy-again-message">Buy Again</span>
+
+            </button>
+
+          </div>
+
+          <div class="product-actions">
+
+            <a href="tracking-page.html">
+              <button class="track-order-button">Track Order</button>
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+ </main>
+
+</body>
+</html>
