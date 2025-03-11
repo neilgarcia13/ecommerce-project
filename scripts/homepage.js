@@ -1,3 +1,4 @@
+// Generating HTML in the homepage
 
 let productsHTML = '';
 
@@ -45,14 +46,19 @@ products.forEach((product) => {
 
 });
 
+
+//Displaying the generated HTML on the webpage using the DOM
 document.querySelector('.js-products-grid').innerHTML = productsHTML;
 
+
+//Add to cart button functionality
 document.querySelectorAll('.js-add-to-cart-button').forEach((button) => {
   button.addEventListener('click', () => {
     
     const productId = button.dataset.productId;
     let matchingItem;
 
+    //Checking if the added item is already in the cart
     cart.forEach((item) => {
 
       if (productId === item.productId) {
@@ -66,7 +72,7 @@ document.querySelectorAll('.js-add-to-cart-button').forEach((button) => {
       matchingItem.quantity++;
 
     } else {
-
+      //Adding of items that are not in the cart
       cart.push({
         productId: productId,
         quantity: 1
@@ -74,6 +80,7 @@ document.querySelectorAll('.js-add-to-cart-button').forEach((button) => {
 
     }
 
+    //Displaying the cart quantity in the homepage
     let cartQuantity = 0;
 
     cart.forEach((item) => {
