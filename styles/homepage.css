@@ -62,6 +62,10 @@ nav {
   margin-right: 30px;
 }
 
+.cart-link {
+  position: relative;
+}
+
 .cart-button {
   background-color: #ffff;
   border: none;
@@ -72,6 +76,17 @@ nav {
 .cart-button p {
   margin: 0;
   font-weight: 700;
+}
+
+.cart-quantity {
+  width: 20px;
+  padding: 2px;
+  background-color: #000;
+  color: #ffff;
+  border-radius: 15px;
+
+  position: absolute;
+  left: 40px;
 }
 
 .view-orders-button {
