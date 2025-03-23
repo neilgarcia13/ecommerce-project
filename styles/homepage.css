@@ -181,6 +181,10 @@ main {
   margin-right: 5px;
 }
 
+.added-to-cart-visible {
+  opacity: 1;
+}
+
 .add-to-cart-button {
   background-color: #FBF5DF;
   padding: 10px;
