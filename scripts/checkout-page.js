@@ -38,7 +38,7 @@ cart.forEach((cartItem) => {
           </div>
 
           <div class="product-price">
-            ${matchingProduct.price}
+            ₱${(matchingProduct.price).toFixed(2)}
           </div>
 
           <div class="product-quantity">
@@ -67,7 +67,7 @@ cart.forEach((cartItem) => {
           <div class="delivery-option">
 
             <input type="radio" checked 
-            class="delivery-option-input" name="delivery-option-1">
+            class="delivery-option-input" name="delivery-option-${matchingProduct.id}">
 
             <div class="delivery-option-details">
               <div class="delivery-option-date">
@@ -84,7 +84,7 @@ cart.forEach((cartItem) => {
           <div class="delivery-option">
 
             <input type="radio" checked 
-            class="delivery-option-input" name="delivery-option-2">
+            class="delivery-option-input" name="delivery-option-${matchingProduct.id}">
 
             <div class="delivery-option-details">
               <div class="delivery-option-date">
@@ -102,7 +102,7 @@ cart.forEach((cartItem) => {
           <div class="delivery-option">
 
             <input type="radio" checked 
-            class="delivery-option-input" name="delivery-option-3">
+            class="delivery-option-input" name="delivery-option-${matchingProduct.id}">
 
             <div class="delivery-option-details">
               <div class="delivery-option-date">

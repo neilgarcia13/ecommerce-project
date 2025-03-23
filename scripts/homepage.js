@@ -14,7 +14,7 @@ products.forEach((product) => {
 
       <div class="product-name">${product.name}</div>
 
-      <div class="product-price">₱${product.price}.00</div>
+      <div class="product-price">₱${(product.price).toFixed(2)}</div>
 
       <div class="product-rating-container">
         <img src="images/icons/star-icon.png" width="24px">
