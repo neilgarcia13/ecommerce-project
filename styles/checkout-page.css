@@ -139,6 +139,15 @@ main {
   margin-left: 5px;
 }
 
+.link-primary {
+  color: rgb(1, 124, 182);
+}
+
+.link-primary:hover {
+  color: rgb(196, 80, 0);
+  cursor: pointer;
+}
+
 .delivery-options-title {
   font-weight: 700;
   margin-bottom: 10px;
