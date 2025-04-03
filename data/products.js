@@ -1,8 +1,10 @@
+//Function to get put the product inside the cart
 export function getProduct(productId) {
   let matchingProduct;
 
   products.forEach((product) => {
 
+    //Checking if the added item is already in the cart
     if(product.id === productId) {
 
       matchingProduct = product;

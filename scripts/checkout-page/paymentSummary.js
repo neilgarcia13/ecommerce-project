@@ -9,18 +9,21 @@ export function renderPaymentSummary() {
 
   cart.forEach((cartItem) => {
 
+    //Product price calculation
     const product = getProduct(cartItem.productId);
     productPrice += product.price * cartItem.quantity;
 
+    //Shipping price calculation
     const deliveryOption = getDeliveryOption(cartItem.deliveryOptionId);
     shippingPrice += deliveryOption.price;
 
   });
 
+  //Adding of product and shipping total to calculate order total
   const orderTotal = productPrice + shippingPrice;
 
   const paymentSummaryHTML = `
-    <div class="payment-summary-title">Order Summary</div>
+    <div class="payment-summary-title">Payment Summary</div>
 
     <div class="payment-summary-row">
       <div>Items (${calculateCartQuantity()}):</div>
@@ -43,6 +46,7 @@ export function renderPaymentSummary() {
 
   `;
 
+  //Displaying the generated HTML on the webpage using the DOM
   document.querySelector('.js-payment-summary').innerHTML = paymentSummaryHTML;
 
 }

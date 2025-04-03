@@ -53,10 +53,12 @@ products.forEach((product) => {
 //Displaying the generated HTML on the webpage using the DOM
 document.querySelector('.js-products-grid').innerHTML = productsHTML;
 
+
 function updateCartQuantity() {
 
   const cartQuantity = calculateCartQuantity();
 
+  //Displaying of cart quantity in the cart icon
   document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
 
 }
@@ -68,6 +70,7 @@ document.querySelectorAll('.js-add-to-cart-button').forEach((button) => {
     
     const productId = button.dataset.productId;
 
+    //Calling to run addToCart function in cart.js
     addToCart(productId);
 
     updateCartQuantity(productId);
@@ -84,4 +87,5 @@ document.querySelectorAll('.js-add-to-cart-button').forEach((button) => {
 
 });
 
+//Calling of this function to update cart quantity after user click add to cart
 updateCartQuantity();

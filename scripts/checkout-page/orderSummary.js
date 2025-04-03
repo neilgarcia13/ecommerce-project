@@ -5,10 +5,13 @@ import { deliveryOptions, getDeliveryOption } from "../../data/deliveryOptions.j
 import { renderPaymentSummary } from './paymentSummary.js';
 
 export function renderOrderSummary() {
-
+  
   let cartSummaryHTML = '';
 
+  //Looping thru items that are in the cart
   cart.forEach((cartItem) => {
+
+    //Variable declaration
 
     const productId = cartItem.productId;
 
@@ -18,10 +21,12 @@ export function renderOrderSummary() {
 
     const deliveryOption = getDeliveryOption(deliveryOptionId);
 
+    //Days formatting using external library DayJS
     const today = dayjs();
     const deliveryDate = today.add(deliveryOption.deliveryDays, 'days');
     const dateString = deliveryDate.format('dddd, MMMM D');
 
+    //Displaying the generated HTML on the webpage using the DOM
     cartSummaryHTML += `
       <div class="cart-item-container js-cart-item-container-${matchingProduct.id}">
 
@@ -68,7 +73,7 @@ export function renderOrderSummary() {
             <div class="delivery-options-title">
               Choose a delivery option:
             </div>
-
+      
               ${deliveryOptionsHTML(matchingProduct, cartItem)}
 
             </div>
@@ -94,6 +99,7 @@ export function renderOrderSummary() {
 
       const isChecked = deliveryOption.id === cartItem.deliveryOptionId;
 
+      //Displaying the generated HTML on the webpage using the DOM
       html += `
         <div class="delivery-option js-delivery-option"
         data-product-id="${matchingProduct.id}"
@@ -122,8 +128,11 @@ export function renderOrderSummary() {
 
   }
 
+  //Displaying the generated HTML on the webpage using the DOM
   document.querySelector('.js-order-summary').innerHTML = cartSummaryHTML;
+  
 
+  //Delete link function after clicking update link
   document.querySelectorAll('.js-delete-link').forEach((link) => {
     link.addEventListener('click', () => {
 
@@ -133,6 +142,7 @@ export function renderOrderSummary() {
       const container = document.querySelector(`.js-cart-item-container-${productId}`);
       container.remove();
 
+      //Calling these functions to refresh the HTML after saving changes 
       updateCartQuantity();
       renderPaymentSummary();
       
@@ -143,12 +153,17 @@ export function renderOrderSummary() {
   function updateCartQuantity() {
 
     const cartQuantity = calculateCartQuantity();
+
+    //Displaying of cart quantity in the checkout header
     document.querySelector('.js-return-to-home-link').innerHTML = `(${cartQuantity} items)`;
 
   }
 
+  //Calling of this function to update cart quantity in the checkout header
   updateCartQuantity();
 
+
+  //Update link function
   document.querySelectorAll('.js-update-link').forEach((link) => {
     link.addEventListener('click', (productId) => {
 
@@ -161,26 +176,35 @@ export function renderOrderSummary() {
 
   });
 
+
+  //Save link function after clicking update link
   document.querySelectorAll('.js-save-link')
     .forEach((link) => {
+
       const productId = link.dataset.productId;
       const quantityInput = document.querySelector(`.js-quantity-input-${productId}`);
       
       // Click event
       link.addEventListener('click', () => {
+
         // The quantityInput variable is passed as an argument 
         // to give handleUpdateQuantity function to access it
         handleUpdateQuantity(productId, quantityInput);
+        renderPaymentSummary();
+
       });
       
       // Keydown event
       quantityInput.addEventListener('keydown', (event) => {
         if (event.key === 'Enter') {
           handleUpdateQuantity(productId, quantityInput);
+          renderPaymentSummary();
         }
       });
+
   });
-    
+
+  //Quick validation and to save new cart quantity in quantityInput 
   function handleUpdateQuantity(productId, quantityInput) {
     const newQuantity = Number(quantityInput.value);
 
@@ -193,11 +217,14 @@ export function renderOrderSummary() {
 
       updateQuantity(productId, newQuantity);
 
+      //Displaying the saved quantity on the webpage using the DOM
       const quantityLabel = document.querySelector(`.js-quantity-label-${productId}`);
       quantityLabel.innerHTML = newQuantity;
 
+      //Displaying of cart quantity in the checkout header
       updateCartQuantity();
 
+      //Removing of the save link and quantityInput after clicking save
       const container = document.querySelector(`.js-cart-item-container-${productId}`);
       container.classList.remove('is-editing-quantity');
 
@@ -205,13 +232,17 @@ export function renderOrderSummary() {
 
   }
 
+  //Looping of each radio button element (delivery option)
   document.querySelectorAll('.js-delivery-option').forEach((element) => {
-
     element.addEventListener('click', () => {
 
-      const {productId, deliveryOptionId} = element.dataset;
+      //Shorthand saving of datasets in a separate variables
+      const {productId, deliveryOptionId} = element.dataset; 
+
+      //Calling this function to update delivery option selected by the user
       updateDeliveryOption(productId, deliveryOptionId);
 
+      //Calling these functions to refresh the HTML after saving changes
       renderOrderSummary();
       renderPaymentSummary();
 

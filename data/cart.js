@@ -1,5 +1,6 @@
 export let cart = JSON.parse(localStorage.getItem('cart'));
 
+//Default objects if cart is empty
 if (!cart) {
 
   cart = [{
@@ -14,9 +15,11 @@ if (!cart) {
   
 }
 
+//Local storage saving function
 function saveToStorage() {
   localStorage.setItem('cart', JSON.stringify(cart));
 }
+
 
 export function addToCart(productId) {
   let matchingItem;
@@ -48,6 +51,7 @@ export function addToCart(productId) {
 
   }
 
+  //Calling this function to save data in local storage
   saveToStorage();
 
 }
@@ -66,9 +70,11 @@ export function removeFromCart(productId) {
 
   cart = newCart;
 
+  //Calling this function to save data in local storage
   saveToStorage();
 
 }
+
 
 export function calculateCartQuantity() {
   
@@ -81,6 +87,7 @@ export function calculateCartQuantity() {
   return cartQuantity;
 }
 
+//Function updating the quantity of the same item in the cart
 export function updateQuantity(productId, newQuantity) {
   let matchingItem;
 
@@ -92,6 +99,7 @@ export function updateQuantity(productId, newQuantity) {
 
   matchingItem.quantity = newQuantity;
 
+  //Calling this function to save data in local storage
   saveToStorage();
 
 }
@@ -111,6 +119,7 @@ export function updateDeliveryOption(productId, deliveryOptionId) {
 
   matchingItem.deliveryOptionId = deliveryOptionId;
 
+  //Calling this function to save data in local storage
   saveToStorage();
 
 }
