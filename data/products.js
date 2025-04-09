@@ -16,6 +16,23 @@ export function getProduct(productId) {
   
 }
 
+class Product {
+  id;
+  image;
+  name;
+  price;
+  rating;
+
+  constructor(productDetails) {
+    this.id = productDetails.id;
+    this.image = productDetails.image;
+    this.name = productDetails.name;
+    this.price = productDetails.price;
+    this.rating = productDetails.rating;
+  }
+
+}
+
 export const products = [{
   id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
   image: 'images/products/gel-ink-pens.jpg',
@@ -112,4 +129,6 @@ export const products = [{
   name: 'Smart Watch for Women Android & iPhone',
   price: 4999,
   rating: 5
-}];
+}].map((productDetails) => {
+  return new Product(productDetails);
+});

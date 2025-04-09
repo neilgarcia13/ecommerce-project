@@ -2,7 +2,7 @@
 import { renderCheckoutHeader } from "./checkout-page/checkoutHeader.js";
 import { renderOrderSummary } from "./checkout-page/orderSummary.js";
 import {renderPaymentSummary} from "./checkout-page/paymentSummary.js";
-import '../data/cart-class.js'
+//import '../data/cart-class.js'
 
 renderCheckoutHeader();
 renderOrderSummary();
