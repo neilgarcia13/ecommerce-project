@@ -1,10 +1,19 @@
-const cart = {
+class Cart {
 
-  cartItems: undefined,
+  cartItems;
+  localStorageKey;
+
+  constructor(localStorageKey) {
+
+    this.localStorageKey = localStorageKey;
+
+    this.loadFromStorage();
+
+  }
 
   loadFromStorage() {
 
-    this.cartItems = JSON.parse(localStorage.getItem('cart-oop'));
+    this.cartItems = JSON.parse(localStorage.getItem(this.localStorageKey));
 
     //Default objects if cart is empty
     if (!this.cartItems) {
@@ -20,12 +29,12 @@ const cart = {
       }];
       
     }
-  },
+  }
 
   //Local storage saving function
   saveToStorage() {
-    localStorage.setItem('cart-oop', JSON.stringify(this.cartItems));
-  },
+    localStorage.setItem(this.localStorageKey, JSON.stringify(this.cartItems));
+  }
 
   addToCart(productId) {
 
@@ -61,7 +70,7 @@ const cart = {
     //Calling this function to save data in local storage
     this.saveToStorage();
   
-  },
+  }
 
   removeFromCart(productId) {
     const newCart = [];
@@ -79,7 +88,7 @@ const cart = {
     //Calling this function to save data in local storage
     this.saveToStorage();
   
-  },
+  }
 
   calculateCartQuantity() {
   
@@ -90,7 +99,24 @@ const cart = {
     });
   
     return cartQuantity;
-  },
+  }
+
+   //Function updating the quantity of the same item in the cart
+   updateQuantity(productId, newQuantity) {
+    let matchingItem;
+
+    this.cartItems.forEach((cartItem) => {
+      if (productId === cartItem.productId) {
+        matchingItem = cartItem;
+      }
+    });
+
+    matchingItem.quantity = newQuantity;
+
+    //Calling this function to save data in local storage
+    this.saveToStorage();
+
+  }
 
   //Function updating the quantity of the same item in the cart
   updateQuantity(productId, newQuantity) {
@@ -107,7 +133,7 @@ const cart = {
     //Calling this function to save data in local storage
     this.saveToStorage();
 
-  },
+  }
 
   updateDeliveryOption(productId, deliveryOptionId) {
 
@@ -128,11 +154,16 @@ const cart = {
     this.saveToStorage();
   
   }
-  
-};
 
-cart.loadFromStorage();
+}
+
+const cart = new Cart('cart-oop');
+const businessCart = new Cart('cart-business');
+
+
 
 console.log(cart);
+console.log(businessCart);
+console.log(businessCart instanceof Cart);
 
 
