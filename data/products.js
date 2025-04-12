@@ -54,6 +54,38 @@ class Clothing extends Product {
 
 }
 
+class Footwear extends Product {
+  footwearSizeChartLink;
+
+  constructor(productDetails) {
+    super(productDetails);
+    this.footwearSizeChartLink = productDetails.footwearSizeChartLink;
+  }
+
+  extraInfoHTML() {
+    // super.extraInfoHTML();
+    return `
+      <a href="${this.footwearSizeChartLink}" class="size-chart-link" target="_blank">Size Chart</a>
+    `;
+  }
+
+}
+
+class Appliance extends Product {
+  warrantyLink;
+
+  constructor(productDetails) {
+    super(productDetails);
+    this.warrantyLink = productDetails.warrantyLink;
+  }
+
+  extraInfoHTML() {
+    // super.extraInfoHTML();
+    return `
+      <a href="${this.warrantyLink}" class="warranty-link" target="_blank">See Warranty</a>
+    `;
+  }
+}
 
 export const products = [{
   id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
@@ -74,7 +106,9 @@ export const products = [{
   image: 'images/products/new-balance-shoes.jpg',
   name: 'New Balance Men’s Shoes',
   price: 3499,
-  rating: 5
+  rating: 5,
+  type: "footwear",
+  footwearSizeChartLink: "images/products/footwear-size-chart.jpg"
 }, {
   id: "54e0eccd-8f36-462b-b68a-8182611d9add",
   image: 'images/products/tactical-shorts.jpg',
@@ -92,13 +126,17 @@ export const products = [{
   image: 'images/products/mech-keyboard.jpg',
   name: 'MageGee Portable 60% Mechanical Gaming Keyboard',
   price: 3999,
-  rating: 4.9
+  rating: 4.9,
+  type: "appliance",
+  warrantyLink: "images/products/appliance-warranty.png"
 }, {
   id: "dd82ca78-a18b-4e2a-9250-31e67412f98d",
   image: 'images/products/unisex-crocs.jpg',
   name: 'Crocs Unisex-Adult Classic Realtree Clog',
   price: 4499,
-  rating: 5
+  rating: 5,
+  type: "footwear",
+  footwearSizeChartLink: "images/products/footwear-size-chart.jpg"
 }, {
   id: "77919bbe-0e56-475b-adde-4f24dfed3a04",
   image: 'images/products/yankees-cap.jpg',
@@ -110,13 +148,17 @@ export const products = [{
   image: 'images/products/digital-camera.jpg',
   name: 'KODAK PIXPRO FZ55-BK 16MP CMOS Sensor Digital Camera',
   price: 12899,
-  rating: 4.9
+  rating: 4.9,
+  type: "appliance",
+  warrantyLink: "images/products/appliance-warranty.png"
 }, {
   id: "58b4fc92-e98c-42aa-8c55-b6b79996769a",
   image: 'images/products/iron-and-steamer.jpg',
   name: 'BLACK+DECKER Press & Steam 2-in-1 Iron and Steamer',
   price: 4899,
-  rating: 4.8
+  rating: 4.8,
+  type: "appliance",
+  warrantyLink: "images/products/appliance-warranty.png"
 }, {
   id: "5968897c-4d27-4872-89f6-5bcb052746d7",
   image: 'images/products/travel-backpack.jpg',
@@ -140,7 +182,9 @@ export const products = [{
   image: 'images/products/headphones.jpg',
   name: 'Soundcore Anker Life Q20 Hybrid Active Noise Cancelling Headphones',
   price: 3499,
-  rating: 4.9
+  rating: 4.9,
+  type: "appliance",
+  warrantyLink: "images/products/appliance-warranty.png"
 }, {
   id: "82bb68d7-ebc9-476a-989c-c78a40ee5cd9",
   image: 'images/products/rocking-horse.jpg',
@@ -152,11 +196,21 @@ export const products = [{
   image: 'images/products/smart-watch.jpg',
   name: 'Smart Watch for Women Android & iPhone',
   price: 4999,
-  rating: 5
+  rating: 5,
+  type: "appliance",
+  warrantyLink: "images/products/appliance-warranty.png"
 }].map((productDetails) => {
 
   if (productDetails.type === 'clothing') {
     return new Clothing(productDetails);
+  }
+
+  else if (productDetails.type === 'footwear') {
+    return new Footwear(productDetails);
+  }
+
+  else if (productDetails.type === 'appliance') {
+    return new Appliance(productDetails);
   }
 
   return new Product(productDetails);

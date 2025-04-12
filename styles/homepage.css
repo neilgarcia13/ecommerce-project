@@ -200,7 +200,7 @@ main {
   box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.75);
 }
 
-.size-chart-link {
+.size-chart-link, .warranty-link {
   text-decoration: underline;
 }
 
