@@ -31,7 +31,29 @@ class Product {
     this.rating = productDetails.rating;
   }
 
+  extraInfoHTML() {
+    return '';
+  };
+
 }
+
+class Clothing extends Product {
+  sizeChartLink;
+
+  constructor(productDetails) {
+    super(productDetails);
+    this.sizeChartLink = productDetails.sizeChartLink;
+  }
+
+  extraInfoHTML() {
+    // super.extraInfoHTML();
+    return `
+      <a href="${this.sizeChartLink}" class="size-chart-link" target="_blank">Size Chart</a>
+    `;
+  }
+
+}
+
 
 export const products = [{
   id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
@@ -44,7 +66,9 @@ export const products = [{
   image: 'images/products/navy-shirt.jpg',
   name: 'Navy Cotton Crew Neck Shirt',
   price: 149,
-  rating: 4.9
+  rating: 4.9,
+  type: "clothing",
+  sizeChartLink: "images/products/clothing-size-chart.png"
 }, {
   id: "83d4ca15-0f35-48f5-b7a3-1ea210004f2e",
   image: 'images/products/new-balance-shoes.jpg',
@@ -56,7 +80,7 @@ export const products = [{
   image: 'images/products/tactical-shorts.jpg',
   name: 'High Quality Men’s Tactical Shorts',
   price: 399,
-  rating: 4.7
+  rating: 4.7,
 }, {
   id: "3ebe75dc-64d2-4137-8860-1f5a963e534b",
   image: 'images/products/cleaning-cloth.jpg',
@@ -130,5 +154,11 @@ export const products = [{
   price: 4999,
   rating: 5
 }].map((productDetails) => {
+
+  if (productDetails.type === 'clothing') {
+    return new Clothing(productDetails);
+  }
+
   return new Product(productDetails);
+
 });
