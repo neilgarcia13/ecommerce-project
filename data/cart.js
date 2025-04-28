@@ -61,7 +61,6 @@ export function addToCart(productId) {
 
   //Calling this function to save data in local storage
   saveToStorage();
-
 }
 
 export function removeFromCart(productId) {

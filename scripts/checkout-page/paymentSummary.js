@@ -50,30 +50,11 @@ export function renderPaymentSummary() {
   //Displaying the generated HTML on the webpage using the DOM
   document.querySelector('.js-payment-summary').innerHTML = paymentSummaryHTML;
 
-  document.querySelector('.js-place-order').addEventListener('click', async () => {
+  document.querySelector('.js-place-order').addEventListener('click', () => {
 
-    try {
-      const response = await fetch('https://supersimplebackend.dev/orders', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          cart: cart
-        })
-      });
+    addOrder();
+    window.location.href = 'orders-page.html';
 
-      const order = await response.json();
-      addOrder(order);
-
-    } catch (error) {
-      console.log('Unexpected error. Try again later.')
-
-    }
-
-    window.location.href = 'orders-page.html'
-
-    
   });
 
 }

@@ -1,4 +1,4 @@
-//Function to get put the product inside the cart
+//Function to get the product inside the cart
 export function getProduct(productId) {
   let matchingProduct;
 
