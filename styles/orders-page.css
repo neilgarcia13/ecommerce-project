@@ -66,11 +66,23 @@ nav {
   border: none;
   margin-right: 15px;
   cursor: pointer;
+  position: relative;
 }
 
 .cart-button p {
   margin: 0;
   font-weight: 700;
+}
+
+.cart-quantity {
+  width: 20px;
+  padding: 2px;
+  background-color: #000;
+  color: #ffff;
+  border-radius: 15px;
+
+  position: absolute;
+  left: 30px;
 }
 
 .view-orders-button {
@@ -185,11 +197,6 @@ main {
   margin-bottom: 15px;
 }
 
-.buy-again-icon {
-  width: 25px;
-  margin-right: 10px;
-}
-
 .buy-again-button {
   display: flex;
   align-items: center;
@@ -208,6 +215,12 @@ main {
 .buy-again-button:hover {
   transition: 0.5s;
   box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.75);
+}
+
+
+.buy-again-icon {
+  width: 25px;
+  margin-right: 10px;
 }
 
 .product-actions {

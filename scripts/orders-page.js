@@ -1,9 +1,12 @@
-import { getProduct, products } from "../data/products.js";
+import { getProduct } from "../data/products.js";
 import { orders } from "../data/orders.js";
-import { cart } from "../data/cart.js";
+import { getDeliveryOption } from "../data/deliveryOptions.js";
+import { calculateCartQuantity, cart, addSingleItemInCart } from "../data/cart.js";
 import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
 
 function loadPage() {
+
+  updateCartQuantity();
 
   let ordersHTML = '';
 
@@ -54,9 +57,15 @@ function loadPage() {
 
     order.products.forEach((productDetails) => {
 
-      const productId = productDetails.productId;
-
-      let product = getProduct(productId);
+      const product = getProduct(productDetails.productId);
+      
+      const deliveryOptionId = productDetails.deliveryOptionId;
+      const deliveryOption = getDeliveryOption(deliveryOptionId);
+  
+      //Days formatting using external library DayJS
+      const today = dayjs();
+      const deliveryDate = today.add(deliveryOption.deliveryDays, 'days');
+      const dateString = deliveryDate.format('MMMM D');
 
       productsListHTML += `
         
@@ -68,15 +77,15 @@ function loadPage() {
 
           <div class="product-name">${product.name}</div>
 
-          <div class="product-delivert-date">Arriving on: March 5</div>
+          <div class="product-delivery-date">Arriving on: ${dateString}</div>
 
           <div class="product-quantity">Quantity: ${productDetails.quantity}</div>
 
-          <button class="buy-again-button">
+          <button class="buy-again-button js-buy-again-button" data-product-id="${product.id}">
 
-            <img class="buy-again-icon" src="images/icons/buy-again.png">
+            <img class="buy-again-icon" src="../images/icons/buy-again.png">
             <span class="buy-again-message">Buy Again</span>
-
+            
           </button>
 
         </div>
@@ -96,7 +105,48 @@ function loadPage() {
   }
 
   document.querySelector('.orders-grid').innerHTML = ordersHTML;
+  
+  const head = Date.now().toString(36);
+  const tail = Math.random().toString().substring(2);
+
+  console.log(tail);
   console.log(orders);
+
+
+  document.querySelectorAll('.js-buy-again-button').forEach((button) => {
+    button.addEventListener('click', () => {
+      
+      addSingleItemInCart(button.dataset.productId);
+
+      updateCartQuantity();
+
+      button.innerHTML = `
+
+        <img class="buy-again-icon" src="images/icons/checkmark.png">
+        <span class="buy-again-message">Added</span>
+    
+      `;
+
+      setTimeout(() => {
+        button.innerHTML = `
+          <img class="buy-again-icon" src="images/icons/buy-again.png">
+          <span class="buy-again-message">Buy Again</span>
+        `;
+      }, 1000);
+  
+    });
+  
+  });
+  
+
+}
+
+function updateCartQuantity() {
+
+  const cartQuantity = calculateCartQuantity();
+
+  //Displaying of cart quantity in the cart icon
+  document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
 
 }
 

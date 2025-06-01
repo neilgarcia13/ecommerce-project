@@ -1,4 +1,4 @@
-import { cart, calculateCartQuantity } from "../../data/cart.js";
+import { cart, calculateCartQuantity, removeAllItemsInCart } from "../../data/cart.js";
 import { getProduct } from "../../data/products.js";
 import { getDeliveryOption } from "../../data/deliveryOptions.js";
 import { addOrder } from "../../data/orders.js";
@@ -53,8 +53,9 @@ export function renderPaymentSummary() {
   document.querySelector('.js-place-order').addEventListener('click', () => {
 
     addOrder();
+    removeAllItemsInCart();
     window.location.href = 'orders-page.html';
-
+    
   });
 
 }

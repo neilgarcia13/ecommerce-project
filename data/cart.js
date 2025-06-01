@@ -61,6 +61,7 @@ export function addToCart(productId) {
 
   //Calling this function to save data in local storage
   saveToStorage();
+
 }
 
 export function removeFromCart(productId) {
@@ -96,6 +97,7 @@ export function calculateCartQuantity() {
 
 //Function updating the quantity of the same item in the cart
 export function updateQuantity(productId, newQuantity) {
+
   let matchingItem;
 
   cart.forEach((cartItem) => {
@@ -130,3 +132,48 @@ export function updateDeliveryOption(productId, deliveryOptionId) {
   saveToStorage();
 
 }
+
+export function removeAllItemsInCart() {
+  
+  const newCart = [];
+ 
+  cart = newCart;
+
+  //Calling this function to save data in local storage
+  saveToStorage();
+
+}
+
+export function addSingleItemInCart(productId) {
+
+  let matchingItem;
+
+  //Checking if the added item is already in the cart
+  cart.forEach((cartItem) => {
+
+    if (productId === cartItem.productId) {
+      matchingItem = cartItem;
+    }
+
+  });
+
+  if (matchingItem) {
+
+    matchingItem.quantity+= 1;
+
+  } else {
+    //Adding of items that are not in the cart
+    cart.push({
+      productId: productId,
+      quantity: 1,
+      deliveryOptionId: '1'
+    });
+
+  }
+
+  //Calling this function to save data in local storage
+  saveToStorage();
+
+}
+
+

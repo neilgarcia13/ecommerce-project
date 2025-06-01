@@ -1,56 +1,53 @@
 import { cart } from "./cart.js";
 import { getProduct } from "../../data/products.js";
 import { getDeliveryOption } from "../../data/deliveryOptions.js";
+import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
 
-export let orders = JSON.parse(localStorage.getItem('orders'));
-
-if (!orders) {
-
-  orders = [{
-
-    orderId: "75725d25-c60b-6e35-cc1d-5ce4c786931b",
-    orderTotal: 3548,
-    products: 
-    [
-      {
-        productId: "83d4ca15-0f35-48f5-b7a3-1ea210004f2e",
-        quantity: 1,
-      }
-    ]
-  
-  }];
-
-}
- 
+export let orders = JSON.parse(localStorage.getItem('orders')) || [];
 
 export function addOrder() {
 
   let productPrice = 0;
   let shippingPrice = 0;
 
-    cart.forEach((cartItem) => {
+  let productId;
+  let quantity;
 
-      const productId = cartItem.productId;
+  let today;
+  let deliveryDate;
+  let dateString;
 
-      //Product price calculation
-      const product = getProduct(productId);
-      productPrice += product.price * cartItem.quantity;
+  cart.forEach((cartItem) => {
 
-      //Shipping price calculation
-      const deliveryOptionId = cartItem.deliveryOptionId;
-      const deliveryOption = getDeliveryOption(deliveryOptionId);
-      shippingPrice += deliveryOption.price;
+    productId = cartItem.productId;
+    quantity = cartItem.quantity;
 
-    });
+    //Product price calculation
+    const product = getProduct(productId);
+    productPrice += product.price * quantity;
 
-    //Adding of product and shipping total to calculate order total
-    const orderTotal = productPrice + shippingPrice;
-  
+    //Shipping price calculation
+    const deliveryOptionId = cartItem.deliveryOptionId;
+    const deliveryOption = getDeliveryOption(deliveryOptionId);
+    shippingPrice += deliveryOption.price;
+
+    //Days formatting using external library DayJS
+    today = dayjs();
+    deliveryDate = today.add(deliveryOption.deliveryDays, 'days');
+    dateString = deliveryDate.format('MMMM D');
+    
+  });
+
+  //Adding of product and shipping total to calculate order total
+  const orderTotal = productPrice + shippingPrice;
+
+  const orderId = Math.random().toString().substring(2);
+
   orders.unshift({
-    orderId: "75725d25-c60b-6e35-cc1d-5ce4c786931b",
+    orderId: orderId,
+    orderTime: today,
     orderTotal: orderTotal,
     products: cart
-    
   });
 
   saveToStorage();
@@ -60,4 +57,3 @@ export function addOrder() {
 function saveToStorage() {
   localStorage.setItem('orders', JSON.stringify(orders));
 }
-
