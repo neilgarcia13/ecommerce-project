@@ -128,10 +128,22 @@ export function renderOrderSummary() {
 
   }
 
-  //Displaying the generated HTML on the webpage using the DOM
-  document.querySelector('.js-order-summary').innerHTML = cartSummaryHTML;
-  
+  if (cart.length === 0) {
 
+    document.querySelector('.js-order-summary').innerHTML = `
+      <div>
+        Your cart is empty. Click <b>View Products</b> to order.
+      </div>
+    `;
+
+  } else {
+
+    //Displaying the generated HTML on the webpage using the DOM
+    document.querySelector('.js-order-summary').innerHTML = cartSummaryHTML;
+
+  }
+
+  
   //Delete link function after clicking update link
   document.querySelectorAll('.js-delete-link').forEach((link) => {
     link.addEventListener('click', () => {
@@ -142,9 +154,20 @@ export function renderOrderSummary() {
       const container = document.querySelector(`.js-cart-item-container-${productId}`);
       container.remove();
 
+
       //Calling these functions to refresh the HTML after saving changes 
       updateCartQuantity();
       renderPaymentSummary();
+
+      if (cart.length === 0) {
+
+        document.querySelector('.js-order-summary').innerHTML = `
+          <div>
+            Your cart is empty. Click <b>View Products</b> to order.
+          </div>
+        `;
+
+      }
       
     });
 
@@ -210,7 +233,7 @@ export function renderOrderSummary() {
 
     if (newQuantity <= 0 || newQuantity >= 1000) {
 
-      alert('Quantity must be at least 1 and less than 1000 ');
+      alert('Quantity must be at least 1 and less than 1000');
       return; // early return
 
     } else if (newQuantity > 0 || newQuantity <= 999) {

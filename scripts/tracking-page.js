@@ -37,7 +37,7 @@ function loadPage() {
   
   console.log(today);
   
-  const dateString = deliveryDate.format('MMMM D');
+  const dateString = deliveryDate.format('dddd, MMMM D');
   
   const percentProgress = ((today - orderTime) / (deliveryDate - orderTime)) * 100;
 
@@ -46,7 +46,7 @@ function loadPage() {
   const trackingHTML = `
 
     <div class="delivery-date">
-      Arriving on ${dateString}
+      ${percentProgress >= 100 ? 'Delivered' : 'Arriving'} on ${dateString}
     </div>
 
     <div class="product-info">

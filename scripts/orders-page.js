@@ -57,6 +57,8 @@ function loadPage() {
 
     order.products.forEach((productDetails) => {
 
+      const today = dayjs();
+
       const product = getProduct(productDetails.productId);
       const orderTime = dayjs(order.orderTime);
       
@@ -65,6 +67,8 @@ function loadPage() {
 
       const deliveryDate = orderTime.add(deliveryOption.deliveryDays, 'days');
       const dateString = deliveryDate.format('MMMM D');
+
+      const percentProgress = ((today - orderTime) / (deliveryDate - orderTime)) * 100;
 
       productsListHTML += `
         
@@ -76,7 +80,7 @@ function loadPage() {
 
           <div class="product-name">${product.name}</div>
 
-          <div class="product-delivery-date">Arriving on: ${dateString}</div>
+          <div class="product-delivery-date">${percentProgress >= 100 ? 'Delivered' : 'Arriving'} on: ${dateString}</div>
 
           <div class="product-quantity">Quantity: ${productDetails.quantity}</div>
 
