@@ -50,12 +50,22 @@ export function renderPaymentSummary() {
   //Displaying the generated HTML on the webpage using the DOM
   document.querySelector('.js-payment-summary').innerHTML = paymentSummaryHTML;
 
-  document.querySelector('.js-place-order').addEventListener('click', () => {
+  let placeOrderBtn = document.querySelector('.js-place-order');
 
-    addOrder();
-    removeAllItemsInCart();
-    window.location.href = 'orders-page.html';
+  if (orderTotal === 0) {
+
+    placeOrderBtn.classList.add('button-disabled');
+
+  } else {
+
+      placeOrderBtn.addEventListener('click', () => {
+
+      addOrder();
+      removeAllItemsInCart();
+      window.location.href = 'orders-page.html';
     
-  });
+    });
+
+  }
 
 }

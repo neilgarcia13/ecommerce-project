@@ -1,7 +1,7 @@
 import { getProduct } from "../data/products.js";
 import { orders } from "../data/orders.js";
 import { getDeliveryOption } from "../data/deliveryOptions.js";
-import { calculateCartQuantity, cart, addSingleItemInCart } from "../data/cart.js";
+import { calculateCartQuantity, addSingleItemInCart } from "../data/cart.js";
 import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
 
 function loadPage() {
@@ -15,39 +15,39 @@ function loadPage() {
     const orderTimeString = dayjs(order.orderTime).format('MMMM D');
 
     ordersHTML += `
-        <div class="order-container">
+      <div class="order-container">
 
-          <div class="order-header">
+        <div class="order-header">
 
-            <div class="order-header-left-section">
+          <div class="order-header-left-section">
 
-              <div class="order-date">
-                <div class="order-header-label">Order Placed:</div>
-                <div>${orderTimeString}</div>
-              </div>
-
-              <div class="order-total">
-                <div class="order-header-label">Total:</div>
-                <div>₱${(order.orderTotal).toFixed(2)}</div>
-              </div>
-
+            <div class="order-date">
+              <div class="order-header-label">Order Placed:</div>
+              <div>${orderTimeString}</div>
             </div>
 
-            <div class="order-header-right-section">
-              <div class="order-header-label">Order ID:</div>
-              <div>${order.orderId}</div>
+            <div class="order-total">
+              <div class="order-header-label">Total:</div>
+              <div>₱${(order.orderTotal).toFixed(2)}</div>
             </div>
 
           </div>
 
-          <div class="order-details-grid">
-
-            ${productsListHTML(order)}
-
+          <div class="order-header-right-section">
+            <div class="order-header-label">Order ID:</div>
+            <div>${order.orderId}</div>
           </div>
 
         </div>
-      `;
+
+        <div class="order-details-grid">
+
+          ${productsListHTML(order)}
+
+        </div>
+
+      </div>
+    `;
     
   });
 
@@ -58,13 +58,12 @@ function loadPage() {
     order.products.forEach((productDetails) => {
 
       const product = getProduct(productDetails.productId);
+      const orderTime = dayjs(order.orderTime);
       
       const deliveryOptionId = productDetails.deliveryOptionId;
       const deliveryOption = getDeliveryOption(deliveryOptionId);
-  
-      //Days formatting using external library DayJS
-      const today = dayjs();
-      const deliveryDate = today.add(deliveryOption.deliveryDays, 'days');
+
+      const deliveryDate = orderTime.add(deliveryOption.deliveryDays, 'days');
       const dateString = deliveryDate.format('MMMM D');
 
       productsListHTML += `
@@ -92,7 +91,7 @@ function loadPage() {
 
         <div class="product-actions">
 
-          <a href="tracking-page.html">
+          <a href="tracking-page.html?orderId=${order.orderId}&productId=${product.id}">
             <button class="track-order-button">Track Order</button>
           </a>
 
