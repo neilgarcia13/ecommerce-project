@@ -22,6 +22,7 @@ class Product {
   name;
   price;
   rating;
+  keywords;
 
   constructor(productDetails) {
     this.id = productDetails.id;
@@ -29,6 +30,7 @@ class Product {
     this.name = productDetails.name;
     this.price = productDetails.price;
     this.rating = productDetails.rating;
+    this.keywords = productDetails.keywords;
   }
 
   extraInfoHTML() {

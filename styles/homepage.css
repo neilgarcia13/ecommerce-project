@@ -27,6 +27,20 @@ nav {
   font-size: 24px;
 }
 
+@media (max-width: 800px) {
+  .header-link {
+    width: unset;
+  }
+}
+
+@media (max-width: 575px) {
+
+  .left-section p {
+    display: none;
+  }
+
+}
+
 .middle-section {
   flex: 1;
   max-width: 850px;
@@ -116,6 +130,32 @@ main {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
 }
+
+@media (max-width: 1700px) {
+  .products-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 1300px) {
+  .products-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .products-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+
 
 .product-container {
   background-color: #ffff;

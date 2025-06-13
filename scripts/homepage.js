@@ -1,11 +1,27 @@
-import { cart, addToCart, calculateCartQuantity } from "../data/cart.js";
+import { addToCart, calculateCartQuantity } from "../data/cart.js";
 import { products } from "../data/products.js";
 
 // Generating HTML in the homepage
-
 let productsHTML = '';
 
-products.forEach((product) => {
+const url = new URLSearchParams(location.search)
+const search = url.get('search');
+
+let filteredProducts = products;
+
+// If a search exists in the URL parameters,
+// filter the products that match the search.
+if (search) {
+
+  filteredProducts = products.filter((product) => {
+
+    return product.name.toLowerCase().includes(search.toLowerCase());
+
+  });
+}
+
+filteredProducts.forEach((product) => {
+
   productsHTML+= `
     <div class="product-container">
       <div class="product-image-container">
@@ -87,7 +103,32 @@ document.querySelectorAll('.js-add-to-cart-button').forEach((button) => {
 
   });
 
+  document.querySelector('.js-search-button').addEventListener('click', () => {
+
+    searchProductName();
+
+  });
+
+  document.querySelector('.js-search-bar').addEventListener('keydown', (event) => {
+
+    if (event.key === 'Enter') {
+      
+      searchProductName();
+
+    }
+  
+  });
+
+
 });
+
+function searchProductName() {
+
+  const search = document.querySelector('.js-search-bar').value;  
+  window.location.href = `homepage.html?search=${search}`;
+
+}
 
 //Calling of this function to update cart quantity after user click add to cart
 updateCartQuantity();
+

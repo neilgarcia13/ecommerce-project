@@ -201,29 +201,28 @@ export function renderOrderSummary() {
 
 
   //Save link function after clicking update link
-  document.querySelectorAll('.js-save-link')
-    .forEach((link) => {
+  document.querySelectorAll('.js-save-link').forEach((link) => {
 
-      const productId = link.dataset.productId;
-      const quantityInput = document.querySelector(`.js-quantity-input-${productId}`);
-      
-      // Click event
-      link.addEventListener('click', () => {
+    const productId = link.dataset.productId;
+    const quantityInput = document.querySelector(`.js-quantity-input-${productId}`);
+    
+    // Click event
+    link.addEventListener('click', () => {
 
-        // The quantityInput variable is passed as an argument 
-        // to give handleUpdateQuantity function to access it
+      // The quantityInput variable is passed as an argument 
+      // to give handleUpdateQuantity function to access it
+      handleUpdateQuantity(productId, quantityInput);
+      renderPaymentSummary();
+
+    });
+    
+    // Keydown event
+    quantityInput.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') {
         handleUpdateQuantity(productId, quantityInput);
         renderPaymentSummary();
-
-      });
-      
-      // Keydown event
-      quantityInput.addEventListener('keydown', (event) => {
-        if (event.key === 'Enter') {
-          handleUpdateQuantity(productId, quantityInput);
-          renderPaymentSummary();
-        }
-      });
+      }
+    });
 
   });
 

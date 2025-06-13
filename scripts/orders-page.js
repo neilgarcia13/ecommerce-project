@@ -140,6 +140,22 @@ function loadPage() {
     });
   
   });
+
+  document.querySelector('.js-search-button').addEventListener('click', () => {
+
+    searchProductName();
+
+  });
+
+  document.querySelector('.js-search-bar').addEventListener('keydown', (event) => {
+
+    if (event.key === 'Enter') {
+      
+      searchProductName();
+
+    }
+  
+  });
   
 
 }
@@ -150,6 +166,13 @@ function updateCartQuantity() {
 
   //Displaying of cart quantity in the cart icon
   document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
+
+}
+
+function searchProductName() {
+
+  const search = document.querySelector('.js-search-bar').value;  
+  window.location.href = `homepage.html?search=${search}`;
 
 }
 
