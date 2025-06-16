@@ -27,6 +27,14 @@ nav {
   font-size: 24px;
 }
 
+@media (max-width: 575px) {
+
+  .left-section p {
+    display: none;
+  }
+
+} 
+
 .middle-section {
   flex: 1;
   max-width: 850px;
@@ -157,12 +165,38 @@ main {
 
 .order-tracking {
   width: 100%;
-  padding: 50px;
+  padding: 25px;
   background-color: #ffff;
 
   box-shadow: 1px 1px 5px 1px rgba(0,0,0,0.5);
   border-right: 1px solid rgb(231, 231, 231);
   border-bottom: 1px solid rgb(231, 231, 231);
+}
+
+@media (max-width: 900px) {
+
+  .order-tracking {
+    width: 90%;
+  }
+
+} 
+
+@media (max-width: 575px) {
+  .progress-label {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 450px) {
+  .progress-labels-container {
+    flex-direction: column;
+    margin-bottom: 5px;
+  }
+
+  .progress-label {
+    margin-bottom: 3px;
+    font-size: 14px;
+  }
 }
 
 .progress-labels-container {
