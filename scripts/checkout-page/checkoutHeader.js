@@ -16,7 +16,7 @@ export function renderCheckoutHeader() {
   const checkoutHeaderHTML = `
     <nav>
       <div class="left-section">
-        <a href="homepage.html" class="header-link">
+        <a href="index.html" class="header-link">
           <img src="images/icons/shopsmart-logo.jpeg" width="64px">
           <p>ShopSmart</p>
         </a>
@@ -25,13 +25,13 @@ export function renderCheckoutHeader() {
       <div class="middle-section">
 
         <p>Checkout <a class="return-to-home-link js-return-to-home-link"
-        href="homepage.html">(${cartQuantity} items)</a> </p>
+        href="index.html">(${cartQuantity} items)</a> </p>
 
       </div>
 
       <div class="right-section">
 
-        <a href="homepage.html" class="header-link">
+        <a href="index.html" class="header-link">
           <button class="view-products-button header-link">View Products</button>
         </a>
 

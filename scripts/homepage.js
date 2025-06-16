@@ -126,7 +126,7 @@ document.querySelectorAll('.js-add-to-cart-button').forEach((button) => {
 function searchProductName() {
 
   const search = document.querySelector('.js-search-bar').value;  
-  window.location.href = `homepage.html?search=${search}`;
+  window.location.href = `index.html?search=${search}`;
 
 }
 
