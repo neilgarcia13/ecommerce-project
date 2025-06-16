@@ -1,4 +1,4 @@
-import { getOrder, orders } from '../data/orders.js';
+import { getOrder } from '../data/orders.js';
 import { calculateCartQuantity } from "../data/cart.js";
 import { getProduct } from '../data/products.js';
 import { getDeliveryOption } from "../data/deliveryOptions.js";

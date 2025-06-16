@@ -58,7 +58,7 @@ export function renderPaymentSummary() {
 
   } else {
 
-      placeOrderBtn.addEventListener('click', () => {
+    placeOrderBtn.addEventListener('click', () => {
 
       addOrder();
       removeAllItemsInCart();
