@@ -18,6 +18,7 @@ if (search) {
     return product.name.toLowerCase().includes(search.toLowerCase());
 
   });
+  
 }
 
 filteredProducts.forEach((product) => {
