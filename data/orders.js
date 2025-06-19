@@ -1,6 +1,6 @@
 import { cart } from "./cart.js";
-import { getProduct } from "/data/products.js";
-import { getDeliveryOption } from "/data/deliveryOptions.js";
+import { getProduct } from "./products.js";
+import { getDeliveryOption } from "./deliveryOptions.js";
 import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
 
 export let orders = JSON.parse(localStorage.getItem('orders')) || [];
