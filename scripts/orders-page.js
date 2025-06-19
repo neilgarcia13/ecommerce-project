@@ -86,7 +86,7 @@ function loadPage() {
 
           <button class="buy-again-button js-buy-again-button" data-product-id="${product.id}">
 
-            <img class="buy-again-icon" src="../images/icons/buy-again.png">
+            <img class="buy-again-icon" src="images/icons/buy-again.png">
             <span class="buy-again-message">Buy Again</span>
             
           </button>
